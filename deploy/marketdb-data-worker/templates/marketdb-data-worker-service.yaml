@@ -1,0 +1,57 @@
+# we do not want to deploy service when doing canary deployment
+# only deploy service in dev and prod
+
+{{ if or (eq .Values.release "prod") (eq .Values.release "dev") }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.service }}
+    release: {{ .Values.release }}
+spec:
+  ports:
+  - port: 8088
+    name: http
+  selector:
+    app: {{ .Values.service }}
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service }}-metrics
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.service }}
+    service: {{ .Values.service }}
+    release: {{ .Values.release }}
+spec:
+  ports:
+    - port: 9090
+      name: metrics
+  selector:
+    app: {{ .Values.service }}
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service }}-micro-metrics
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.service }}
+    service: {{ .Values.service }}
+    release: {{ .Values.release }}
+spec:
+  ports:
+    - port: 9091
+      name: metrics
+  selector:
+    app: {{ .Values.service }}
+  type: NodePort
+
+{{ end }}

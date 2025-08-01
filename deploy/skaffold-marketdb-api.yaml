@@ -1,0 +1,52 @@
+
+# This file was generated from:
+# tools/scripts/deploy_new_service.py
+# for more information run: python3 tools/scripts/deploy_new_service.py gen-config --help
+
+# run skaffold dev in dev environemnt with:
+# skaffold dev -f <path to this file>/skaffold.yaml -p dev
+# run skaffold dev in prod environemnt with:
+# skaffold dev -f <path to this file>/skaffold.yaml -p prod
+# deploy canary version in skaffold dev mode with:
+# skaffold dev -f <path to this file>/skaffold.yaml -p canary
+
+---
+apiVersion: skaffold/v1beta10
+kind: Config
+profiles:
+  - name: dev
+    build:
+      artifacts:
+      - image: asia-southeast1-docker.pkg.dev/stagvn-dev/marketdb/marketdb-api
+        context: .
+        bazel:
+          target: //marketdb/src:marketdb_api.tar
+      local: {}
+    deploy:
+      helm:
+        releases:
+          - name: marketdb-api
+            chartPath: marketdb/deploy/marketdb-api
+            namespace: marketdb
+            valuesFiles:
+              - marketdb/deploy/marketdb-api/values-dev.yaml
+            values:
+              image: asia-southeast1-docker.pkg.dev/stagvn-dev/marketdb/marketdb-api
+  - name: prod
+    build:
+      artifacts:
+      - image: asia-southeast1-docker.pkg.dev/stagvn/marketdb/marketdb-api
+        context: .
+        bazel:
+          target: //marketdb/src:marketdb_api.tar
+      local: {}
+    deploy:
+      helm:
+        releases:
+          - name: marketdb-api
+            chartPath: marketdb/deploy/marketdb-api
+            namespace: marketdb
+            valuesFiles:
+              - marketdb/deploy/marketdb-api/values-prod.yaml
+            values:
+              image: asia-southeast1-docker.pkg.dev/stagvn/marketdb/marketdb-api

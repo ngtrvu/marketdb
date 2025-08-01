@@ -1,0 +1,27 @@
+replicaCount: 1
+service: marketdb-api
+namespace: marketdb
+image: asia-southeast1-docker.pkg.dev/stagvn-dev/marketdb/marketdb-api
+release: dev
+cpu: 100m
+memory: 256Mi
+ingress:
+  host: m-dev.stag.vn
+  hostTlsSecret: stagvn-tls-cert
+  prefix: marketdb-api
+  publicPrefix: marketdb-public
+serviceMonitor: false
+cmd: [
+  'python', 'main.zip', '--bind=0.0.0.0:8088', 
+    '--log-level=debug', 
+    '--capture-output', 
+    '--workers=1',
+    '--env', 'ENV=production',
+    '--env', 'GS_BUCKET_NAME=img-dev.stag.vn',
+    '--env', 'MEDIA_URL=https://img-dev.stag.vn',
+    '--env', 'GOOGLE_CLOUD_PROJECT=stagvn-dev',
+    '--env', 'REDIS_STACK_HOST=redis-stack-server.marketdb',
+    '--env', 'GOOGLE_OAUTH_CLIENT_ID=247020062444-6gmieg3e3rmtr1gfa3f2492lsogv34fr.apps.googleusercontent.com',
+]
+hpa:
+  autoscaling: false

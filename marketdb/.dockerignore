@@ -1,0 +1,15 @@
+.git
+env
+venv
+media
+static
+tmp
+*.md
+*.rst
+*.pyc
+__pycache__
+.coverage
+.tox
+tests
+.env
+.env*

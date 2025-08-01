@@ -1,0 +1,66 @@
+
+# This file was generated from:
+# tools/scripts/deploy_new_service.py
+# for more information run: python3 tools/scripts/deploy_new_service.py gen-config --help
+
+# run skaffold dev in dev environemnt with:
+# skaffold dev -f <path to this file>/skaffold.yaml -p dev
+# run skaffold dev in prod environemnt with:
+# skaffold dev -f <path to this file>/skaffold.yaml -p prod
+# deploy canary version in skaffold dev mode with:
+# skaffold dev -f <path to this file>/skaffold.yaml -p canary
+
+---
+apiVersion: skaffold/v1beta10
+kind: Config
+profiles:
+  - name: dev
+    build:
+      artifacts:
+      - image: asia.gcr.io/stagvn-dev/marketdb-jobs
+        context: .
+        bazel:
+          target: //marketdb/jobs/python:marketdb_jobs.tar
+      local: {}
+    deploy:
+      helm:
+        releases:
+          - name: marketdb-data-worker
+            chartPath: marketdb/apps/python/marketdb_data_worker/deploy/marketdb-data-worker
+            namespace: marketdb
+            valuesFiles:
+              - marketdb/apps/python/marketdb_data_worker/deploy/marketdb-data-worker/values-dev.yaml
+            values:
+              image: asia.gcr.io/stagvn-dev/marketdb-jobs
+          - name: marketdb-data-beat
+            chartPath: marketdb/apps/python/marketdb_data_worker/deploy/marketdb-data-beat
+            namespace: marketdb
+            valuesFiles:
+              - marketdb/apps/python/marketdb_data_worker/deploy/marketdb-data-beat/values-dev.yaml
+            values:
+              image: asia.gcr.io/stagvn-dev/marketdb-jobs
+  - name: prod
+    build:
+      artifacts:
+      - image: asia.gcr.io/stagvn/marketdb-jobs
+        context: .
+        bazel:
+          target: //marketdb/jobs/python:marketdb_jobs.tar
+      local: {}
+    deploy:
+      helm:
+        releases:
+          - name: marketdb-data-worker
+            chartPath: marketdb/apps/python/marketdb_data_worker/deploy/marketdb-data-worker
+            namespace: marketdb
+            valuesFiles:
+              - marketdb/apps/python/marketdb_data_worker/deploy/marketdb-data-worker/values-prod.yaml
+            values:
+              image: asia.gcr.io/stagvn/marketdb-jobs
+          - name: marketdb-data-beat
+            chartPath: marketdb/apps/python/marketdb_data_worker/deploy/marketdb-data-beat
+            namespace: marketdb
+            valuesFiles:
+              - marketdb/apps/python/marketdb_data_worker/deploy/marketdb-data-beat/values-prod.yaml
+            values:
+              image: asia.gcr.io/stagvn/marketdb-jobs

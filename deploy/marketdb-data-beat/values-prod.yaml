@@ -1,0 +1,20 @@
+replicaCount: 1
+service: marketdb-data-beat
+namespace: marketdb
+image: asia.gcr.io/stagvn/marketdb-jobs
+release: prod
+cpu: 10m
+memory: 128Mi
+loglevel: info
+serviceMonitor: true
+healthCheckCmd: ['sh', '-c', 'python3', 'health_check.zip',
+      '--env', 'GCP_PROJECT_ID=stagvn',
+      '--env', 'CELERY_BROKER_URL=redis://redis.marketdb:6379/0',
+]
+cmd: ['python', 'beat.zip',
+      '--env', 'GCP_PROJECT_ID=stagvn',
+      '--env', 'CELERY_BROKER_URL=redis://redis.marketdb:6379/0',
+      '--env', 'SENTRY_DSN=https://ee80d9ce56bd4250a7bec9f4b0339c66@o1173613.ingest.sentry.io/6268888',
+]
+taintApp: memory
+poolName: highmem-pool-spot

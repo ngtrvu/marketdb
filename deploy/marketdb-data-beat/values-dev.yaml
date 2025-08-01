@@ -1,0 +1,16 @@
+replicaCount: 1
+service: marketdb-data-beat
+namespace: marketdb
+image: asia.gcr.io/stagvn-dev/marketdb-jobs
+release: dev
+cpu: 10m
+memory: 128Mi
+serviceMonitor: false
+healthCheckCmd: ['sh', '-c', 'python3', 'health_check.zip',
+      '--env', 'GCP_PROJECT_ID=stagvn-dev',
+      '--env', 'CELERY_BROKER_URL=redis://redis.marketdb:6379/0',
+]
+cmd: ['python', 'beat.zip',
+  '--env', 'GCP_PROJECT_ID=stagvn-dev',
+  '--env', 'CELERY_BROKER_URL=redis://redis.marketdb:6379/0',
+]

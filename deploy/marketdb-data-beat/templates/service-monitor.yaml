@@ -1,0 +1,26 @@
+{{ if .Values.serviceMonitor }}
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ .Values.service }}-monitor
+  namespace: monitoring
+  labels:
+    app: {{ .Values.service }}
+    monitoring: prometheus
+spec:
+  selector:
+    matchLabels:
+      service: {{ .Values.service }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Values.namespace }}
+  podTargetLabels:
+  - app
+  - release
+  endpoints:
+  - port: metrics
+    honorLabels: true
+
+{{ end }}

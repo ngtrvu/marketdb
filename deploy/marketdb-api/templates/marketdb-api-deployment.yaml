@@ -1,0 +1,154 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.service }}{{ if (ne .Values.release "prod") }}-{{ .Values.release }}{{ end }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.service }}
+    release: {{ .Values.release }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: {{ .Values.service }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.service }}
+        release: {{ .Values.release }}
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+    spec:
+      {{- if .Values.taintApp }}
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: {{ .Values.taintApp }}
+          effect: "NoSchedule"
+      {{ end }}
+      {{- if .Values.poolName }}
+      nodeSelector:
+        cloud.google.com/gke-nodepool: {{ .Values.poolName }}
+      {{ end }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - {{ .Values.service }}
+              topologyKey: "kubernetes.io/hostname"
+      initContainers:
+        - name: {{ .Values.service }}-init
+          image: {{ .Values.image }}
+          command: ["python3", "manage.zip", "migrate"]
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.namespace }}-configmap
+            - secretRef:
+                name: {{ .Values.namespace }}
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/key.json
+          volumeMounts:
+            - mountPath: /var/secrets/google
+              name: {{ .Values.namespace }}-iam-secret
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+            requests:
+              cpu: {{ .Values.cpu | quote }}
+              memory: {{ .Values.memory | quote }}
+      containers:
+        - name: {{ .Values.service }}
+          image: {{ .Values.image }}
+          command: {{ .Values.cmd | toJson }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.namespace }}-configmap
+            - secretRef:
+                name: {{ .Values.namespace }}
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/key.json
+          volumeMounts:
+            - mountPath: /var/secrets/google
+              name: {{ .Values.namespace }}-iam-secret
+          livenessProbe:
+            httpGet:
+              path: /healthy
+              port: 8088
+            initialDelaySeconds: 30
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8088
+            initialDelaySeconds: 30
+            periodSeconds: 60
+          ports:
+            - containerPort: 8088
+              name: http
+            - containerPort: 9090
+              name: metrics
+            - containerPort: 9091
+              name: micro-metrics
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+            requests:
+              cpu: {{ .Values.cpu | quote }}
+              memory: {{ .Values.memory | quote }}
+      volumes:
+        - name: {{ .Values.namespace }}-iam-secret
+          secret:
+            secretName: {{ .Values.namespace }}-iam-secret
+
+{{ if and .Values.hpa.autoscaling (eq .Values.release "prod") }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Values.service }}-scaling
+  namespace: {{ .Values.namespace }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Values.service }}
+  minReplicas: {{ .Values.hpa.minReplicas }}
+  maxReplicas: {{ .Values.hpa.maxReplicas }}
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: {{ .Values.hpa.targetCPU | default 85 }}
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: {{ .Values.hpa.targetMemory | default 95 }}
+  behavior:
+    scaleDown:
+      policies:
+      - type: Pods
+        value: {{ .Values.hpa.minReplicas | default 1 }}
+        periodSeconds: {{ .Values.hpa.scaleDownPeriodSeconds | default 120 }}
+      - type: Percent
+        value: {{ .Values.hpa.scaleDownPercent | default 10 }}
+        periodSeconds: {{ .Values.hpa.scaleDownPeriodSeconds | default 120 }}
+{{ end }}
