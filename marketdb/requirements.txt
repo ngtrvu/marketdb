@@ -89,6 +89,7 @@ waitress==2.1.2
 wget==3.2
 
 # for dev
+uv==0.8.4
 django-extensions==3.2.3
 django-debug-toolbar==4.2.0
 factory-boy==3.3.1
