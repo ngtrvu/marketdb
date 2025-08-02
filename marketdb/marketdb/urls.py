@@ -26,10 +26,11 @@ urlpatterns = [
     path("healthy", health_check, name="health-check"),
     path("ready", ready_check, name="ready-check"),
 
-    re_path(
-        r"^marketdb-internal/v1/",
-        include("api_internal.urls", namespace="api_internal"),
-    ),
+    # TODO: Add internal API with JWT auth
+    # re_path(
+    #     r"^marketdb-internal/v1/",
+    #     include("api_internal.urls", namespace="api_internal"),
+    # ),
     re_path(
         r"^marketdb-public/v1/",
         include("api_public.urls", namespace="api_public"),
