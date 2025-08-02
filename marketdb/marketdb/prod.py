@@ -1,7 +1,9 @@
 # Import settings from base
-import logging
 import os
+from dotenv import load_dotenv
+load_dotenv(dotenv_path="/secrets/marketdb.env")
 
+# Import all settings from base
 from .base import *
 
 DEBUG = False
@@ -20,10 +22,6 @@ DATABASES = {
     }
 }
 
-RAVEN_CONFIG = {
-    "dsn": "https://:@sentry.io/280769",
-}
-
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Static files (CSS, JavaScript, Images)
@@ -31,7 +29,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 STATIC_URL = "/static/"
 STATIC_ROOT = "/www/marketdb/static/"
 
-MEDIA_URL = os.environ.get("MEDIA_URL", "/")
+MEDIA_URL = os.environ.get("MEDIA_URL", "https://img.stag.vn")
 MEDIA_ROOT = "/www/marketdb/uploads/"
 
 LOGGING_LEVEL = "INFO" if os.environ.get("ENV") == "production" else "DEBUG"
