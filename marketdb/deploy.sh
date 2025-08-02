@@ -14,4 +14,6 @@ gcloud run deploy $SERVICE_NAME \
   --allow-unauthenticated \
   --port 8000 \
   --add-cloudsql-instances stagvn:asia-southeast1:stagvn-pg \
-  --update-secrets=/secrets/marketdb.env=marketdb:latest
+  --update-secrets=/secrets/marketdb.env=marketdb:latest \
+  --network default \
+  --subnet default
