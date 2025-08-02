@@ -1,0 +1,4 @@
+{"symbol":"CMG","name":"Cổ phiếu thưởng","eventType":"StockDividend","exrightDate":"2023-12-05","publicDate":"2023-11-15","issueDate":"2023-12-06","recordDate":null,"ratio":0.202,"value":null,"description":"Tỷ lệ 100:20.2"}
+{"symbol":"CMG","name":"Cổ tức bằng cổ phiếu","eventType":"StockDividend","exrightDate":"2023-12-05","publicDate":"2023-11-06","issueDate":"2023-12-06","recordDate":null,"ratio":0.06,"value":null,"description":"Trả cổ tức năm 2022,tỷ lệ 100:6"}
+{"symbol":"CMG","name":"Cổ tức bằng tiền","eventType":"CashDividend","exrightDate":"2023-12-05","publicDate":"2023-11-15","issueDate":"2023-12-28","recordDate":"2023-12-28","ratio":0.06,"value":600.0,"description":"Trả cổ tức năm 2022 (600 đ\/cp)"}
+{"symbol":"MSH","name":"Cổ tức bằng tiền","eventType":"CashDividend","exrightDate":"2023-12-05","publicDate":"2023-11-16","issueDate":"2023-12-22","recordDate":"2023-12-22","ratio":0.25,"value":2500.0,"description":"Trả cổ tức năm 2023 (2500 đ\/cp)"}

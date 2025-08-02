@@ -1,0 +1,3 @@
+{"symbol":"AAV", "type":"STOCK", "exchange":"HNX", "timestamp":1705478518, "reference":3900, "open":3800, "high":3900, "low":3800, "close":3800, "price":3800, "volume":244600, "ceiling":4200, "floor":3600, "trading_value":942610000}
+{"symbol":"ACB", "type":"STOCK", "exchange":"HOSE", "timestamp":1705477481, "reference":25400, "open":25450, "high":25800, "low":25350, "close":25400, "price":25400, "volume":9714300, "ceiling":27150, "floor":23650, "trading_value":247907000000}
+{"symbol":"VTL", "type":"STOCK", "exchange":"UPCOM", "timestamp":1705478518, "reference":14200, "open":14200, "high":14200, "low":14200, "close":14200, "price":14200, "volume":0, "ceiling":16300, "floor":12100, "trading_value":0}

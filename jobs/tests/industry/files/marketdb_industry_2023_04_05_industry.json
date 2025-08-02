@@ -1,0 +1,151 @@
+{"id":11000,"name":"Nguyên vật liệu","status":1002,"level":1,"icb_code":"1000","parent_id":null}
+{"id":13000,"name":"Hàng Tiêu dùng","status":1002,"level":1,"icb_code":"3000","parent_id":null}
+{"id":16000,"name":"Viễn thông","status":1002,"level":1,"icb_code":"6000","parent_id":null}
+{"id":13300,"name":"Ô tô và phụ tùng","status":1002,"level":2,"icb_code":"3300","parent_id":13000}
+{"id":17500,"name":"Điện, nước & xăng dầu khí đốt","status":1002,"level":2,"icb_code":"7500","parent_id":17000}
+{"id":18700,"name":"Dịch vụ tài chính","status":1002,"level":2,"icb_code":"8700","parent_id":18000}
+{"id":14000,"name":"Dược phẩm và Y tế","status":1002,"level":1,"icb_code":"4000","parent_id":null}
+{"id":15000,"name":"Dịch vụ Tiêu dùng","status":1002,"level":1,"icb_code":"5000","parent_id":null}
+{"id":12000,"name":"Công nghiệp","status":1002,"level":1,"icb_code":"2000","parent_id":null}
+{"id":18000,"name":"Tài chính","status":1002,"level":1,"icb_code":"8000","parent_id":null}
+{"id":13760,"name":"Hàng cá nhân","status":1002,"level":3,"icb_code":"3760","parent_id":13700}
+{"id":10001,"name":"Dầu khí ","status":1002,"level":1,"icb_code":"0001","parent_id":null}
+{"id":19000,"name":"Công nghệ Thông tin","status":1002,"level":1,"icb_code":"9000","parent_id":null}
+{"id":15700,"name":"Du lịch và Giải trí","status":1002,"level":2,"icb_code":"5700","parent_id":15000}
+{"id":11700,"name":"Tài nguyên Cơ bản","status":1002,"level":2,"icb_code":"1700","parent_id":11000}
+{"id":11300,"name":"Hóa chất","status":1002,"level":2,"icb_code":"1300","parent_id":11000}
+{"id":17000,"name":"Tiện ích Cộng đồng","status":1002,"level":1,"icb_code":"7000","parent_id":null}
+{"id":12300,"name":"Xây dựng và Vật liệu","status":1002,"level":2,"icb_code":"2300","parent_id":12000}
+{"id":15300,"name":"Bán lẻ","status":1002,"level":2,"icb_code":"5300","parent_id":15000}
+{"id":13500,"name":"Thực phẩm và đồ uống","status":1002,"level":2,"icb_code":"3500","parent_id":13000}
+{"id":10500,"name":"Dầu khí","status":1002,"level":2,"icb_code":"0500","parent_id":10001}
+{"id":14500,"name":"Y tế","status":1002,"level":2,"icb_code":"4500","parent_id":14000}
+{"id":15500,"name":"Truyền thông","status":1002,"level":2,"icb_code":"5500","parent_id":15000}
+{"id":12700,"name":"Hàng & Dịch vụ Công nghiệp","status":1002,"level":2,"icb_code":"2700","parent_id":12000}
+{"id":18500,"name":"Bảo hiểm","status":1002,"level":2,"icb_code":"8500","parent_id":18000}
+{"id":13765,"name":"Giầy dép","status":1002,"level":4,"icb_code":"3765","parent_id":13760}
+{"id":11350,"name":"Hóa chất","status":1002,"level":3,"icb_code":"1350","parent_id":11300}
+{"id":11353,"name":"Nhựa, cao su & sợi","status":1002,"level":4,"icb_code":"1353","parent_id":11350}
+{"id":13570,"name":"Sản xuất thực phẩm","status":1002,"level":3,"icb_code":"3570","parent_id":13500}
+{"id":13573,"name":"Nuôi trồng nông & hải sản","status":1002,"level":4,"icb_code":"3573","parent_id":13570}
+{"id":18770,"name":"Dịch vụ tài chính","status":1002,"level":3,"icb_code":"8770","parent_id":18700}
+{"id":18777,"name":"Môi giới chứng khoán","status":1002,"level":4,"icb_code":"8777","parent_id":18770}
+{"id":13763,"name":"Hàng May mặc","status":1002,"level":4,"icb_code":"3763","parent_id":13760}
+{"id":18630,"name":"Bất động sản","status":1002,"level":3,"icb_code":"8630","parent_id":18600}
+{"id":18633,"name":"Bất động sản","status":1002,"level":4,"icb_code":"8633","parent_id":18630}
+{"id":18350,"name":"Ngân hàng","status":1002,"level":3,"icb_code":"8350","parent_id":18300}
+{"id":18355,"name":"Ngân hàng","status":1002,"level":4,"icb_code":"8355","parent_id":18350}
+{"id":16570,"name":"Viễn thông di động","status":1002,"level":3,"icb_code":"6570","parent_id":16500}
+{"id":16575,"name":"Viễn thông di động","status":1002,"level":4,"icb_code":"6575","parent_id":16570}
+{"id":18530,"name":"Bảo hiểm phi nhân thọ","status":1002,"level":3,"icb_code":"8530","parent_id":18500}
+{"id":18536,"name":"Bảo hiểm phi nhân thọ","status":1002,"level":4,"icb_code":"8536","parent_id":18530}
+{"id":12790,"name":"Tư vấn & Hỗ trợ Kinh doanh","status":1002,"level":3,"icb_code":"2790","parent_id":12700}
+{"id":12791,"name":"Tư vấn & Hỗ trợ KD","status":1002,"level":4,"icb_code":"2791","parent_id":12790}
+{"id":15370,"name":"Bán lẻ","status":1002,"level":3,"icb_code":"5370","parent_id":15300}
+{"id":15379,"name":"Phân phối hàng chuyên dụng","status":1002,"level":4,"icb_code":"5379","parent_id":15370}
+{"id":12350,"name":"Xây dựng và Vật liệu","status":1002,"level":3,"icb_code":"2350","parent_id":12300}
+{"id":12357,"name":"Xây dựng","status":1002,"level":4,"icb_code":"2357","parent_id":12350}
+{"id":12353,"name":"Vật liệu xây dựng & Nội thất","status":1002,"level":4,"icb_code":"2353","parent_id":12350}
+{"id":11730,"name":"Lâm nghiệp và Giấy","status":1002,"level":3,"icb_code":"1730","parent_id":11700}
+{"id":11733,"name":"Lâm sản và Chế biến gỗ","status":1002,"level":4,"icb_code":"1733","parent_id":11730}
+{"id":11770,"name":"Khai khoáng","status":1002,"level":3,"icb_code":"1770","parent_id":11700}
+{"id":11775,"name":"Khai khoáng ","status":1002,"level":4,"icb_code":"1775","parent_id":11770}
+{"id":12770,"name":"Vận tải","status":1002,"level":3,"icb_code":"2770","parent_id":12700}
+{"id":12777,"name":"Kho bãi, hậu cần và bảo dưỡng","status":1002,"level":4,"icb_code":"2777","parent_id":12770}
+{"id":15550,"name":"Truyền thông","status":1002,"level":3,"icb_code":"5550","parent_id":15500}
+{"id":15557,"name":"Sách, ấn bản & sản phẩm văn hóa","status":1002,"level":4,"icb_code":"5557","parent_id":15550}
+{"id":15555,"name":"Dịch vụ truyền thông","status":1002,"level":4,"icb_code":"5555","parent_id":15550}
+{"id":15330,"name":"Phân phối thực phẩm & dược phẩm","status":1002,"level":3,"icb_code":"5330","parent_id":15300}
+{"id":15337,"name":"Phân phối thực phẩm","status":1002,"level":4,"icb_code":"5337","parent_id":15330}
+{"id":13577,"name":"Thực phẩm","status":1002,"level":4,"icb_code":"3577","parent_id":13570}
+{"id":14570,"name":"Dược phẩm","status":1002,"level":3,"icb_code":"4570","parent_id":14500}
+{"id":14577,"name":"Dược phẩm","status":1002,"level":4,"icb_code":"4577","parent_id":14570}
+{"id":12730,"name":"Điện tử & Thiết bị điện","status":1002,"level":3,"icb_code":"2730","parent_id":12700}
+{"id":12737,"name":"Thiết bị điện","status":1002,"level":4,"icb_code":"2737","parent_id":12730}
+{"id":12797,"name":"Nhà cung cấp thiết bị","status":1002,"level":4,"icb_code":"2797","parent_id":12790}
+{"id":14530,"name":"Thiết bị và Dịch vụ Y tế","status":1002,"level":3,"icb_code":"4530","parent_id":14500}
+{"id":14535,"name":"Thiết bị y tế","status":1002,"level":4,"icb_code":"4535","parent_id":14530}
+{"id":14573,"name":"Công nghệ sinh học","status":1002,"level":4,"icb_code":"4573","parent_id":14570}
+{"id":12720,"name":"Hàng công nghiệp","status":1002,"level":3,"icb_code":"2720","parent_id":12700}
+{"id":12723,"name":"Containers & Đóng gói","status":1002,"level":4,"icb_code":"2723","parent_id":12720}
+{"id":16500,"name":"Viễn thông","status":1002,"level":2,"icb_code":"6500","parent_id":16000}
+{"id":18300,"name":"Ngân hàng","status":1002,"level":2,"icb_code":"8300","parent_id":18000}
+{"id":12750,"name":"Công nghiệp nặng","status":1002,"level":3,"icb_code":"2750","parent_id":12700}
+{"id":12757,"name":"Máy công nghiệp","status":1002,"level":4,"icb_code":"2757","parent_id":12750}
+{"id":11357,"name":"Sản phẩm hóa dầu, Nông dược & Hóa chất khác","status":1002,"level":4,"icb_code":"1357","parent_id":11350}
+{"id":13767,"name":"Hàng cá nhân","status":1002,"level":4,"icb_code":"3767","parent_id":13760}
+{"id":17570,"name":"Nước & Khí đốt","status":1002,"level":3,"icb_code":"7570","parent_id":17500}
+{"id":17573,"name":"Phân phối xăng dầu & khí đốt","status":1002,"level":4,"icb_code":"7573","parent_id":17570}
+{"id":15750,"name":"Du lịch & Giải trí","status":1002,"level":3,"icb_code":"5750","parent_id":15700}
+{"id":15757,"name":"Nhà hàng và quán bar","status":1002,"level":4,"icb_code":"5757","parent_id":15750}
+{"id":17530,"name":"Sản xuất & Phân phối Điện","status":1002,"level":3,"icb_code":"7530","parent_id":17500}
+{"id":17535,"name":"Sản xuất & Phân phối Điện","status":1002,"level":4,"icb_code":"7535","parent_id":17530}
+{"id":13530,"name":"Bia và đồ uống","status":1002,"level":3,"icb_code":"3530","parent_id":13500}
+{"id":13533,"name":"Sản xuất bia ","status":1002,"level":4,"icb_code":"3533","parent_id":13530}
+{"id":11750,"name":"Kim loại","status":1002,"level":3,"icb_code":"1750","parent_id":11700}
+{"id":11757,"name":"Thép và sản phẩm thép","status":1002,"level":4,"icb_code":"1757","parent_id":11750}
+{"id":11771,"name":"Khai thác Than","status":1002,"level":4,"icb_code":"1771","parent_id":11770}
+{"id":18775,"name":"Tài chính đặc biệt","status":1002,"level":4,"icb_code":"8775","parent_id":18770}
+{"id":15753,"name":"Khách sạn","status":1002,"level":4,"icb_code":"5753","parent_id":15750}
+{"id":17577,"name":"Nước","status":1002,"level":4,"icb_code":"7577","parent_id":17570}
+{"id":13740,"name":"Hàng hóa giải trí","status":1002,"level":3,"icb_code":"3740","parent_id":13700}
+{"id":13743,"name":"Điện tử tiêu dùng","status":1002,"level":4,"icb_code":"3743","parent_id":13740}
+{"id":13537,"name":"Đồ uống & giải khát","status":1002,"level":4,"icb_code":"3537","parent_id":13530}
+{"id":18637,"name":"Tư Vấn, Định giá, Môi giới Bất động sản","status":1002,"level":4,"icb_code":"8637","parent_id":18630}
+{"id":15759,"name":"Vận tải hành khách & Du lịch","status":1002,"level":4,"icb_code":"5759","parent_id":15750}
+{"id":12799,"name":"Chất thải & Môi trường","status":1002,"level":4,"icb_code":"2799","parent_id":12790}
+{"id":10530,"name":"Sản xuất Dầu khí","status":1002,"level":3,"icb_code":"0530","parent_id":10500}
+{"id":10533,"name":"Sản xuất và Khai thác dầu khí","status":1002,"level":4,"icb_code":"0533","parent_id":10530}
+{"id":12775,"name":"Đường sắt","status":1002,"level":4,"icb_code":"2775","parent_id":12770}
+{"id":15373,"name":"Bán lẻ phức hợp","status":1002,"level":4,"icb_code":"5373","parent_id":15370}
+{"id":18570,"name":"Bảo hiểm nhân thọ","status":1002,"level":3,"icb_code":"8570","parent_id":18500}
+{"id":18575,"name":"Bảo hiểm nhân thọ","status":1002,"level":4,"icb_code":"8575","parent_id":18570}
+{"id":15553,"name":"Giải trí & Truyền thông","status":1002,"level":4,"icb_code":"5553","parent_id":15550}
+{"id":11737,"name":"Sản xuất giấy","status":1002,"level":4,"icb_code":"1737","parent_id":11730}
+{"id":12733,"name":"Hàng điện & điện tử","status":1002,"level":4,"icb_code":"2733","parent_id":12730}
+{"id":12793,"name":"Đào tạo & Việc làm","status":1002,"level":4,"icb_code":"2793","parent_id":12790}
+{"id":17575,"name":"Tiện ích khác","status":1002,"level":4,"icb_code":"7575","parent_id":17570}
+{"id":19570,"name":"Thiết bị và Phần cứng","status":1002,"level":3,"icb_code":"9570","parent_id":19500}
+{"id":19578,"name":"Thiết bị viễn thông","status":1002,"level":4,"icb_code":"9578","parent_id":19570}
+{"id":13780,"name":"Thuốc lá","status":1002,"level":3,"icb_code":"3780","parent_id":13700}
+{"id":13785,"name":"Thuốc lá","status":1002,"level":4,"icb_code":"3785","parent_id":13780}
+{"id":13350,"name":"Ô tô và phụ tùng","status":1002,"level":3,"icb_code":"3350","parent_id":13300}
+{"id":13353,"name":"Sản xuất ô tô","status":1002,"level":4,"icb_code":"3353","parent_id":13350}
+{"id":19530,"name":"Phần mềm & Dịch vụ Máy tính","status":1002,"level":3,"icb_code":"9530","parent_id":19500}
+{"id":19533,"name":"Dịch vụ Máy tính","status":1002,"level":4,"icb_code":"9533","parent_id":19530}
+{"id":19537,"name":"Phần mềm","status":1002,"level":4,"icb_code":"9537","parent_id":19530}
+{"id":15377,"name":"Dịch vụ tiêu dùng chuyên ngành","status":1002,"level":4,"icb_code":"5377","parent_id":15370}
+{"id":13357,"name":"Lốp xe","status":1002,"level":4,"icb_code":"3357","parent_id":13350}
+{"id":12753,"name":"Xe tải & Đóng tàu","status":1002,"level":4,"icb_code":"2753","parent_id":12750}
+{"id":13720,"name":"Hàng gia dụng","status":1002,"level":3,"icb_code":"3720","parent_id":13700}
+{"id":13726,"name":"Thiết bị gia dụng","status":1002,"level":4,"icb_code":"3726","parent_id":13720}
+{"id":12773,"name":"Vận tải Thủy","status":1002,"level":4,"icb_code":"2773","parent_id":12770}
+{"id":15333,"name":"Phân phối dược phẩm","status":1002,"level":4,"icb_code":"5333","parent_id":15330}
+{"id":14537,"name":"Dụng cụ y tế","status":1002,"level":4,"icb_code":"4537","parent_id":14530}
+{"id":15755,"name":"Dịch vụ giải trí","status":1002,"level":4,"icb_code":"5755","parent_id":15750}
+{"id":12779,"name":"Dịch vụ vận tải","status":1002,"level":4,"icb_code":"2779","parent_id":12770}
+{"id":12771,"name":"Chuyển phát nhanh","status":1002,"level":4,"icb_code":"2771","parent_id":12770}
+{"id":18773,"name":"Tài chính cá nhân","status":1002,"level":4,"icb_code":"8773","parent_id":18770}
+{"id":16530,"name":"Viễn thông cố định","status":1002,"level":3,"icb_code":"6530","parent_id":16500}
+{"id":16535,"name":"Viễn thông cố định","status":1002,"level":4,"icb_code":"6535","parent_id":16530}
+{"id":13355,"name":"Phụ tùng ô tô","status":1002,"level":4,"icb_code":"3355","parent_id":13350}
+{"id":11777,"name":"Khai thác vàng","status":1002,"level":4,"icb_code":"1777","parent_id":11770}
+{"id":13535,"name":"Vang & Rượu mạnh","status":1002,"level":4,"icb_code":"3535","parent_id":13530}
+{"id":15751,"name":"Hàng không","status":1002,"level":4,"icb_code":"5751","parent_id":15750}
+{"id":19572,"name":"Phần cứng","status":1002,"level":4,"icb_code":"9572","parent_id":19570}
+{"id":11755,"name":"Kim Loại màu","status":1002,"level":4,"icb_code":"1755","parent_id":11750}
+{"id":13722,"name":"Đồ gia dụng lâu bền","status":1002,"level":4,"icb_code":"3722","parent_id":13720}
+{"id":13747,"name":"Đồ chơi","status":1002,"level":4,"icb_code":"3747","parent_id":13740}
+{"id":11753,"name":"Nhôm","status":1002,"level":4,"icb_code":"1753","parent_id":11750}
+{"id":10570,"name":"Thiết bị, Dịch vụ và Phân phối Dầu khí","status":1002,"level":3,"icb_code":"0570","parent_id":10500}
+{"id":10573,"name":"Thiết bị và Dịch vụ Dầu khí","status":1002,"level":4,"icb_code":"0573","parent_id":10570}
+{"id":18538,"name":"Tái bảo hiểm","status":1002,"level":4,"icb_code":"8538","parent_id":18530}
+{"id":12727,"name":"Công nghiệp phức hợp","status":1002,"level":4,"icb_code":"2727","parent_id":12720}
+{"id":19535,"name":"Internet","status":1002,"level":4,"icb_code":"9535","parent_id":19530}
+{"id":19574,"name":"Thiết bị văn phòng","status":1002,"level":4,"icb_code":"9574","parent_id":19570}
+{"id":13724,"name":"Đồ gia dụng một lần","status":1002,"level":4,"icb_code":"3724","parent_id":13720}
+{"id":14533,"name":"Chăm sóc y tế","status":1002,"level":4,"icb_code":"4533","parent_id":14530}
+{"id":15371,"name":"Bán lẻ hàng may mặc","status":1002,"level":4,"icb_code":"5371","parent_id":15370}
+{"id":19500,"name":"Công nghệ Thông tin","status":1002,"level":2,"icb_code":"9500","parent_id":19000}
+{"id":18600,"name":"Bất động sản","status":1002,"level":2,"icb_code":"8600","parent_id":18000}
+{"id":13700,"name":"Hàng cá nhân & Gia dụng","status":1002,"level":2,"icb_code":"3700","parent_id":13000}
