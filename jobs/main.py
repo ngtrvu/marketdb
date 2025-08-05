@@ -5,10 +5,7 @@ import click
 from utils.logger import logger, setup_logger
 
 from cli import etf, fund, stock, market_index
-from pipelines.funds.mutual_fund_nav import MutualFundNAVCrawler
-from pipelines.funds.mutual_fund_nav_backfill import (
-    MutualFundNAVBackfill,
-)
+
 from pipelines.cryptos.crypto_info_etl import CryptoInfoETL
 from pipelines.cryptos.crypto_price_realtime_job import (
     CryptoPriceRealtimeJob,
@@ -19,31 +16,14 @@ from pipelines.fear_greed_index.computing_job import (
 from pipelines.fear_greed_index.indexer_job import (
     FearGreedIndexIndexerJob,
 )
-from pipelines.funds.mutual_fund_nav_analytics_etl import (
-    MutualFundNAVAnalyticsETL,
-)
-from pipelines.funds.vcam_fund_nav_crawler import VcamNAVCrawler
-from pipelines.funds.mutual_fund_nav_daily_etl import (
-    MutualFundNAVDailyETL,
-)
-from pipelines.funds.mutual_fund_nav_price_chart import (
-    MutualFundNavPriceChart,
-)
+
 from pipelines.industry.industry_analytics_daily_job import (
     IndustryAnalyticsDailyJob,
 )
 from pipelines.market_index.market_analytics import (
     MarketPerformanceAnalyticsJob,
 )
-from pipelines.market_index.market_index_analytics_job import (
-    MarketIndexAnalyticsJob,
-)
-from pipelines.market_index.market_index_intraday_job import (
-    MarketIndexIntradayJob,
-)
-from pipelines.marketdb_exporter.fund_nav_bulk_exporter import (
-    FundNavBulkExporter,
-)
+
 from pipelines.marketdb_exporter.stock_event_bulk_exporter import (
     StockEventBulkExporter,
 )
@@ -66,18 +46,11 @@ from pipelines.etf_analytics.etf_price_analytics_job import (
 from pipelines.etf_analytics.etf_price_analytics_intraday_job import (
     ETFPriceAnalyticsIntradayJob,
 )
-from pipelines.stock_prices.stock_price_intraday import (
-    StockPriceIntradayJob,
-)
+
 from pipelines.stock_prices.stock_price_bulk_transform_v3 import (
     StockPriceBulkTransformV3,
 )
-from pipelines.market_index.market_index_bulk_transform import (
-    MarketIndexBulkTransform,
-)
-from pipelines.market_index.market_index_bulk_transform_v1 import (
-    MarketIndexBulkTransformV1,
-)
+
 from pipelines.etf_analytics.etf_price_bulk_transform import (
     ETFPriceBulkTransform,
 )
@@ -138,105 +111,6 @@ def run_trading_initializer(input_date=None):
 
 
 @cli.command()
-@click.option("--input_date", type=str)
-def run_exchange_intraday_indexer(input_date=None):
-    StockPriceIntradayJob().run(input_date=input_date)
-    MarketIndexIntradayJob().run(input_date=input_date)
-
-
-@cli.command()
-@click.option("--input_date", type=str)
-def run_market_index_intraday_indexer(input_date=None):
-    MarketIndexIntradayJob().run(input_date=input_date)
-
-
-@cli.command()
-@click.option("--input_date", type=str)
-@click.option("--fund_manager", type=int)
-@click.option("--symbol", type=str)
-def run_mutual_fund_nav_intraday_crawler(
-    input_date=None, fund_manager=None, symbol=None
-):
-    MutualFundNAVCrawler().run(
-        input_date=input_date, fund_manager=fund_manager, symbol=symbol
-    )
-
-
-@cli.command()
-@click.option("--input_date", type=str)
-@click.option("--symbol", type=str)
-@click.option("--fund_manager", type=int)
-@click.option("--start_date", type=str)
-@click.option("--end_date", type=str)
-def run_mutual_fund_nav_backfill(
-    input_date=None, symbol=None, fund_manager=None, start_date=None, end_date=None
-):
-    MutualFundNAVBackfill().run(
-        input_date=input_date,
-        symbol=symbol,
-        fund_manager=fund_manager,
-        start_date=start_date,
-        end_date=end_date,
-    )
-
-
-@cli.command()
-@click.option("--input_date", type=str)
-@click.option("--symbol", type=str)
-@click.option("--from_date", type=str)
-@click.option("--to_date", type=str)
-def run_mutual_fund_nav_backfill_etl(
-    input_date=None, symbol=None, from_date=None, to_date=None
-):
-    MutualFundNAVBackfill().run_etl(
-        input_date=input_date, symbol=symbol, from_date=from_date, to_date=to_date
-    )
-
-
-@cli.command()
-@click.option("--input_date", type=str)
-@click.option("--from_date", type=str)
-@click.option("--backfill", count=True)
-def run_mutual_fund_nav_daily_indexer(input_date=None, from_date=None, backfill=0):
-    job = MutualFundNAVDailyETL()
-    if backfill:
-        job.run_backfilling(input_date=input_date, from_date=from_date)
-    else:
-        job.run(input_date=input_date)
-
-
-@cli.command()
-@click.option("--input_date", type=str)
-def run_mutual_fund_nav_analytics_indexer(input_date=None):
-    MutualFundNAVAnalyticsETL().run(input_date=input_date)
-
-
-@cli.command()
-@click.option("--fund_code", type=str)
-@click.option("--input_date", type=str)
-@click.option("--from_date", type=str)
-@click.option("--to_date", type=str)
-def run_mutual_fund_nav_crawler(
-    fund_code, input_date=None, from_date=None, to_date=None
-):
-    VcamNAVCrawler().run(
-        input_date=input_date, from_date=from_date, to_date=to_date, fund_code=fund_code
-    )
-
-
-@cli.command()
-@click.option("--input_date", "-d", type=str)
-@click.option("--backfill", count=True)
-def run_mutual_fund_nav_price_chart(input_date=None, backfill=0):
-    job = MutualFundNavPriceChart()
-    if backfill:
-        job.parallel = 10
-        job.run_backfilling(input_date)
-    else:
-        job.run(input_date=input_date)
-
-
-@cli.command()
 def run_crypto_info_indexer():
     CryptoInfoETL().run()
 
@@ -260,12 +134,6 @@ def run_stock_event_bulk_exporter():
 
 @cli.command()
 @click.option("--input_date", type=str)
-def run_mutual_fund_nav_bulk_exporter(input_date=None):
-    FundNavBulkExporter().run(input_date=input_date)
-
-
-@cli.command()
-@click.option("--input_date", type=str)
 def run_industry_info_indexer(input_date=None):
     IndustryETL().run(input_date="2022/12/23" if not input_date else input_date)
 
@@ -274,12 +142,6 @@ def run_industry_info_indexer(input_date=None):
 @click.option("--input_date", type=str)
 def run_industry_analytics(input_date=None):
     IndustryAnalyticsDailyJob().run(input_date=input_date)
-
-
-@cli.command()
-@click.option("--input_date", type=str)
-def run_market_index_analytics(input_date=None):
-    MarketIndexAnalyticsJob().run(input_date=input_date)
 
 
 @cli.command()
@@ -378,18 +240,6 @@ def run_stock_price_bulk_transform(input_date: str = None):
 
 @cli.command()
 @click.option("--input_date", type=str)
-def run_market_index_bulk_transform(input_date: str = None):
-    MarketIndexBulkTransform().run(input_date=input_date)
-
-
-@cli.command()
-@click.option("--input_date", type=str)
-def run_market_index_bulk_transform_v1(input_date: str = None):
-    MarketIndexBulkTransformV1().run(input_date=input_date)
-
-
-@cli.command()
-@click.option("--input_date", type=str)
 def run_etf_price_bulk_transform(input_date: str = None):
     ETFPriceBulkTransform().run(input_date=input_date)
 
@@ -433,8 +283,30 @@ def run_stock_price_history_backfill(input_date: str = None):
 
 cli.add_command(etf.commands)
 cli.add_command(fund.commands)
+
+# add all fund commands
+cli.add_command(fund.run_mutual_fund_nav_intraday_crawler)
+cli.add_command(fund.run_mutual_fund_nav_daily_indexer)
+cli.add_command(fund.run_mutual_fund_nav_backfill)
+cli.add_command(fund.run_mutual_fund_nav_backfill_etl)
+cli.add_command(fund.run_mutual_fund_nav_analytics_indexer)
+cli.add_command(fund.run_mutual_fund_nav_price_chart)
+cli.add_command(fund.run_mutual_fund_nav_bulk_exporter)
+cli.add_command(fund.run_fund_intraday)
+cli.add_command(fund.run_fund_initializer)
+
+# add all stock commands
 cli.add_command(stock.commands)
+
+# add all market index commands 
 cli.add_command(market_index.commands)
+cli.add_command(market_index.run_market_index_stock_indexer)
+cli.add_command(market_index.run_market_index_daily_backfill)
+cli.add_command(market_index.run_market_index_bulk_transform)
+cli.add_command(market_index.run_market_index_bulk_transform_v1)
+cli.add_command(market_index.run_market_index_analytics)
+cli.add_command(market_index.run_exchange_intraday_indexer)
+cli.add_command(market_index.run_market_index_intraday_indexer)
 
 
 if __name__ == "__main__":
