@@ -1,4 +1,3 @@
-from datetime import datetime
 import click
 
 from utils.logger import logger
@@ -6,7 +5,6 @@ from utils.logger import logger
 from pipelines.marketdb_exporter.fund_nav_bulk_exporter import FundNavBulkExporter
 from pipelines.funds.mutual_fund_nav import MutualFundNAVCrawler
 from pipelines.funds.mutual_fund_nav_backfill import MutualFundNAVBackfill
-from pipelines.funds.mutual_fund_nav import MutualFundNAVCrawler
 from pipelines.funds.mutual_fund_nav_analytics_etl import MutualFundNAVAnalyticsETL
 from pipelines.funds.vcam_fund_nav_crawler import VcamNAVCrawler
 from pipelines.funds.mutual_fund_nav_daily_etl import MutualFundNAVDailyETL

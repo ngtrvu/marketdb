@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+from utils.logger import logger
 from common.tinydwh.base import MiniJobBase
 from common.tinydwh.date_ranges import DateRangeUtils
 from common.tinydwh.datetime_util import (
@@ -9,19 +10,22 @@ from common.tinydwh.datetime_util import (
     get_datetime_now,
     str_to_datetime,
 )
-from utils.logger import logger
 from common.tinydwh.storage.connector import GCS
-from common.mdb.client import (
-    MarketdbClient,
-)
+from common.mdb.client import MarketdbClient
 from config import Config
 
 
 class MutualFundNavPriceChart(MiniJobBase):
+    """
+    This is the pipeline for mutual fund nav price chart
+    """
+
     def __init__(self, sampling_ratio=1.0):
         self.sampling_ratio = sampling_ratio
         self.new_lines = True
         self.marketdb_client = MarketdbClient()
+
+        super().__init__()
 
     def pipeline(self, input_date: str = None):
         if not input_date:
@@ -35,7 +39,8 @@ class MutualFundNavPriceChart(MiniJobBase):
         )
 
         if fund_nav_daily_df.empty:
-            raise Exception("Mutual fund NAV Daily Bulk data is empty...")
+            logger.error("Mutual fund NAV Daily Bulk data is empty...")
+            return False
 
         fund_nav_daily_df = fund_nav_daily_df[["symbol", "date", "nav"]]
         daily_nav_groups = fund_nav_daily_df.sort_values(
@@ -141,16 +146,26 @@ class MutualFundNavPriceChart(MiniJobBase):
                 [fund_nav_price_chart_df, pd.DataFrame(nav_row, index=["symbol"])]
             )
 
+        # ensure date is in dd-mm-yyyy format by converting to datetime and then to date by pandas
         fund_nav_price_chart_df["date"] = pd.to_datetime(
             fund_nav_price_chart_df["date"]
         ).dt.date
 
         fund_nav_price_chart_df = fund_nav_price_chart_df.replace({np.nan: None})
 
+        # upload to gcs
         self.upload_to_gcs(df=fund_nav_price_chart_df)
-        self.do_indexing(fund_nav_price_chart_df.to_dict("records"))
 
-        logger.info(f"MutualFundNavPriceChart is successfully executed...")
+        # index to db, convert to dict and then to list
+        items = fund_nav_price_chart_df.to_dict("records")
+
+        # convert date to dd-mm-yyyy format
+        for item in items:
+            item["date"] = item["date"].strftime("%d-%m-%Y")
+
+        self.do_indexing(items)
+
+        logger.info("MutualFundNavPriceChart is successfully executed!")
         return True
 
     def compute(

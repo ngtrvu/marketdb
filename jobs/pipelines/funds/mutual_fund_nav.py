@@ -4,8 +4,8 @@ import pandas as pd
 
 from common.tinydwh.base import MiniJobBase
 from common.tinydwh.datetime_util import VN_TIMEZONE, get_date_str
-from utils.logger import logger
 from common.mdb.client import MarketdbClient
+from utils.logger import logger
 from config import Config
 from pipelines.crawlers.crawler_mutual_funds_nav.main import (
     mutual_funds_nav_daily_main,
